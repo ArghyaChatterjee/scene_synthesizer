@@ -21,6 +21,9 @@ pip install scene-synthesizer[recommend]
 # create and activate conda env or venv
 git clone https://github.com/ArghyaChatterjee/scene_synthesizer.git
 cd scene_synthesizer/
+python3.10 -m venv scene_synthesizer_venv
+source scene_synthesizer_venv/bin/activate
+pip3 install --upgrade pip
 pip install -e.[recommend]
 ```
 See the [documentation](https://scene-synthesizer.github.io/getting_started/install.html) for detailed installation instructions.
