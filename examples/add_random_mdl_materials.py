@@ -5,7 +5,7 @@ from scene_synthesizer.usd_import import get_scene_paths
 from scene_synthesizer.exchange.usd_export import add_mdl_material, bind_material_to_prims
 
 # The file name of the final result
-usd_filename = "/tmp/kit.usd"
+usd_filename = "assets/kit.usd"
 seed = None
 
 random.seed(seed)

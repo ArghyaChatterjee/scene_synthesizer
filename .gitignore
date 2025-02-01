@@ -72,3 +72,5 @@ venv*/*
 
 # Jupyter files
 *checkpoint.ipynb
+
+scene_synthesizer_venv/

@@ -1,35 +1,59 @@
-[![PyPI - Version](https://img.shields.io/pypi/v/scene-synthesizer)](https://pypi.org/project/scene-synthesizer/)
-[![Static Badge](https://img.shields.io/badge/docs-passing-brightgreen)](https://scene-synthesizer.github.io/)
-[![Static Badge](https://img.shields.io/badge/arXiv-preprint-D12424)](https://drive.google.com/file/d/1fewL5ezXhlICAv_BNqyLe5YjaXAbXH2Y/view?usp=sharing)
-
-# scene_synthesizer
+# Scene Synthesizer
 
 A python package to generate manipulation scenes.
-Check the [documentation](https://scene-synthesizer.github.io/) page for detailed installation instructions, API, and examples.
 
-## Installation
+## Installation Requirement
 
-This project will download and install additional third-party open source software projects. Review the license terms of these open source projects before use (e.g. [OpenUSD license](https://openusd.org/license>)).
+This is tested on ubuntu 20.04 and cuda 12.1 with python3.10. 
 
 ### Via pip
 ```
-pip install scene-synthesizer[recommend]
+pip3 install scene-synthesizer[recommend]
 ```
 
 ### Via git
+Create and activate a virtual environment:
 ```
-# create and activate conda env or venv
 git clone https://github.com/ArghyaChatterjee/scene_synthesizer.git
 cd scene_synthesizer/
 python3.10 -m venv scene_synthesizer_venv
 source scene_synthesizer_venv/bin/activate
-pip3 install --upgrade pip
-pip install -e.[recommend]
+pip3 install --upgrade pip setuptools
+pip3 install -r requirements.txt
+pip3 install -e.[recommend]
+```
+The function `show_graph` depends on `pygraphviz`. If required, install via
+```
+sudo apt-get install graphviz graphviz-dev
+pip3 install pygraphviz
 ```
 See the [documentation](https://scene-synthesizer.github.io/getting_started/install.html) for detailed installation instructions.
 
 ## Quick Start
+Try out this example script to generate a kitchen scene and visualize it:
+```python
+cd scripts
+python3 generate_kitchen_scene.py
+```
+Here is the output:
 
+<p align="center">
+    <img src="media/generate_kitchen_scene.png", width="800">
+</p>
+
+Try out another example script to generate another kitchen scene and export as `.usd`:
+```python
+cd ../examples
+python3 add_random_mdl_materials.py
+```
+The output `kit.usd` (universal scene descriptor) file will generate inside the `assets` folder. You can import it in blender and it will look like this:
+
+<p align="center">
+    <img src="media/kit_usd.png", width="800">
+</p>
+
+## Detailes Instruction
+Here is an example to generate a scene:
 ```python
 import scene_synthesizer as synth
 import scene_synthesizer.procedural_assets as pa
@@ -66,23 +90,5 @@ scene.export('scene.usd')
 scene.export('scene.urdf')
 ```
 
-## License
+Check the [documentation](https://scene-synthesizer.github.io/) page for detailed installation instructions, API, and examples.
 
-The code is released under the [Apache-2.0 license](https://github.com/NVlabs/scene_synthesizer/blob/main/LICENSE).
-
-
-## Contributions
-
-Found a bug? Help us by reporting it! Want a new feature? Create an issue! Made something useful or fixed a bug? Start a PR! Check the [contribution guidelines](CONTRIBUTING.md).
-
-## How can I cite this library?
-
-```
-@article{Eppner2024, 
-    title = {scene_synthesizer: A Python Library for Procedural Scene Generation in Robot Manipulation}, 
-    author = {Clemens Eppner and Adithyavairavan Murali and Caelan Garrett and Rowland O'Flaherty and Tucker Hermans and Wei Yang and Dieter Fox},
-    journal = {Journal of Open Source Software}
-    publisher = {The Open Journal}, 
-    year = {2024},
-}
-```
